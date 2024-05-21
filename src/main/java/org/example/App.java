@@ -5,6 +5,9 @@ import java.io.File;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class App {
     public static int _min( int[] numbers ){
@@ -54,17 +57,15 @@ public class App {
 
     public static void main( String[] args ) throws IOException {
 
-        File file = new File("numbers.txt");
-        Scanner scanner = new Scanner(file);
-        String line = scanner.nextLine();
+        BufferedReader reader = new BufferedReader(new FileReader("numbers.txt"));
+        String line = reader.readLine();
         String[] input = line.split(" ");
+
         int[] numbers = new int[input.length];
 
         for(int i = 0; i < input.length; i++){
             numbers[i] = Integer.parseInt(input[i]);
         }
-
-        scanner.close();
 
         System.out.println( _min(numbers) );
         System.out.println( _max(numbers) );
