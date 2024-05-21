@@ -53,13 +53,23 @@ public class App {
     }
 
     public static void main( String[] args ) throws IOException {
-//        Scanner scan = new Scanner(System.in);
-//        String file_name = scan.next();
 
-        int[] array = {1,2,3,4,5};
-        System.out.println( _mul(array) );
+        File file = new File("numbers.txt");
+        Scanner scanner = new Scanner(file);
+        String line = scanner.nextLine();
+        String[] input = line.split(" ");
+        int[] numbers = new int[input.length];
 
+        for(int i = 0; i < input.length; i++){
+            numbers[i] = Integer.parseInt(input[i]);
+        }
 
+        scanner.close();
+
+        System.out.println( _min(numbers) );
+        System.out.println( _max(numbers) );
+        System.out.println( _sum(numbers) );
+        System.out.println( _mul(numbers) );
     }
 
 }
