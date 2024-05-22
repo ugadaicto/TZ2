@@ -4,17 +4,33 @@ import java.io.FileReader;
 import java.io.File;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.Scanner;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
 public class App {
-    public static int _min( int[] numbers ){
 
-        int minimal = numbers[0];
-        for(int n: numbers){
-            if (minimal > n){
+    public static BigInteger[] read_file( String file_name ) throws IOException {
+
+        BufferedReader reader = new BufferedReader(new FileReader(file_name));
+        String line = reader.readLine();
+        String[] input = line.split(" ");
+
+        BigInteger[] numbers = new BigInteger[input.length];
+
+        for (int i = 0; i < input.length; i++) {
+            numbers[i] =  BigInteger.valueOf( Integer.parseInt(input[i]) );
+        }
+
+        return numbers;
+    }
+    public static BigInteger _min( BigInteger[] numbers ){
+
+        BigInteger minimal = numbers[0];
+        for(BigInteger n: numbers){
+            if (minimal.compareTo(n) == 1){
 
                 minimal = n;
             }
@@ -22,11 +38,11 @@ public class App {
 
         return minimal;
     }
-    public static int _max( int[] numbers ){
+    public static BigInteger _max( BigInteger[] numbers ){
 
-        int maximum = numbers[0];
-        for(int n: numbers){
-            if (maximum < n){
+        BigInteger maximum = numbers[0];
+        for(BigInteger n: numbers){
+            if (maximum.compareTo(n) == -1){
 
                 maximum = n;
             }
@@ -35,21 +51,21 @@ public class App {
         return maximum;
     }
 
-    public static int _sum( int[] numbers ){
+    public static BigInteger _sum( BigInteger[] numbers ){
 
-        int summary = 0;
-        for(int n: numbers){
-            summary += n;
+        BigInteger summary = BigInteger.ZERO;
+        for(BigInteger n: numbers){
+            summary = summary.add(n);
         }
 
         return summary;
     }
 
-    public static int _mul( int[] numbers ){
+    public static BigInteger _mul( BigInteger[] numbers ){
 
-        int composition = 1;
-        for(int n: numbers){
-            composition *= n;
+        BigInteger composition = BigInteger.ONE;
+        for(BigInteger n: numbers){
+            composition = composition.multiply(n);
         }
 
         return composition;
@@ -57,15 +73,9 @@ public class App {
 
     public static void main( String[] args ) throws IOException {
 
-        BufferedReader reader = new BufferedReader(new FileReader("numbers.txt"));
-        String line = reader.readLine();
-        String[] input = line.split(" ");
-
-        int[] numbers = new int[input.length];
-
-        for(int i = 0; i < input.length; i++){
-            numbers[i] = Integer.parseInt(input[i]);
-        }
+        Scanner scan = new Scanner(System.in);
+        String file_name = scan.next();
+        BigInteger[] numbers = read_file(file_name);
 
         System.out.println( _min(numbers) );
         System.out.println( _max(numbers) );
