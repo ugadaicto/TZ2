@@ -1,14 +1,9 @@
 package org.example;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.File;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.util.Scanner;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 
 public class App {
 
@@ -65,6 +60,10 @@ public class App {
 
         BigInteger composition = BigInteger.ONE;
         for(BigInteger n: numbers){
+            if (n.compareTo(BigInteger.ZERO) == 0){
+                return BigInteger.ZERO;
+            }
+
             composition = composition.multiply(n);
         }
 
