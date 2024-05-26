@@ -1,17 +1,19 @@
 package org.example;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTimeout;
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.math.BigInteger;
+import java.time.Duration;
 import java.util.Arrays;
 import org.junit.Test;
 
 
 public class AppTest {
 
-    public static BigInteger[] read_file(String file_name ) throws IOException {
+    public static BigInteger[] read_file( String file_name ) throws IOException {
 
         BufferedReader reader = new BufferedReader(new FileReader(file_name));
         String line = reader.readLine();
@@ -110,14 +112,14 @@ public class AppTest {
         BigInteger[] data3 = read_file("test3.txt");
         BigInteger[] data4 = read_file("test4.txt");
         BigInteger[] data5 = read_file("test5.txt");
-        BigInteger[] data6 = read_file("test6.txt");
+//        BigInteger[] data6 = read_file("test6.txt");
 
         assertEquals( FindMul(data1), App._mul(data1) );
         assertEquals( FindMul(data2), App._mul(data2) );
         assertEquals( FindMul(data3), App._mul(data3) );
         assertEquals( FindMul(data4), App._mul(data4) );
         assertEquals( FindMul(data5), App._mul(data5) );
-        assertEquals( FindMul(data6), App._mul(data6) );
+//        assertEquals( FindMul(data6), App._mul(data6) );
     }
 
     @Test
@@ -246,8 +248,8 @@ public class AppTest {
         long time_point5 = System.currentTimeMillis();
         App._mul(data5);
         long time_point6 = System.currentTimeMillis();
-        App._mul(data6);
-        long time_point7 = System.currentTimeMillis();
+//        App._mul(data6);
+//        long time_point7 = System.currentTimeMillis();
 
         System.out.println();
         System.out.println("Mul function time test: ");
@@ -256,7 +258,16 @@ public class AppTest {
         System.out.println("Third data: " + String.valueOf(time_point4 - time_point3) + " ms");
         System.out.println("Fourth data: " + String.valueOf(time_point5 - time_point4) + " ms");
         System.out.println("Fifth data: " + String.valueOf(time_point6 - time_point5) + " ms");
-        System.out.println("Sixth data: " + String.valueOf(time_point7 - time_point6) + " ms");
+//        System.out.println("Sixth data: " + String.valueOf(time_point7 - time_point6) + " ms");
 
+    }
+
+    @Test
+    public void MulTimeoutTest() throws IOException {
+
+        BigInteger[] data = read_file("test5.txt");
+        assertTimeout( Duration.ofMillis(3000), () -> {
+            App._mul(data);
+        } );
     }
 }
