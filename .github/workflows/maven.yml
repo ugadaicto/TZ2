@@ -27,3 +27,10 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+
+    - name: Send Notification
+      uses: "appleboy/telegram-action@master"
+      with:
+        to: ${{ secret.TELEGRAM_CHAT_ID }}
+        token: ${{ secret.TELEGRAM_BOT_TOKEN }}
+        args: a
