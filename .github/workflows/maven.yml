@@ -32,10 +32,10 @@ jobs:
       run: mvn -B package --file pom.xml
 
     - name: Install dependencies
-      run: npm ci
+      run: mvn install -DskipTests
 
-    - name: Run tests
-      run: npm test
+    - name: Test App
+      run: mvn test
 
     - name: Send Notification
       uses: BorisTestov/tg_sender_action@latest
