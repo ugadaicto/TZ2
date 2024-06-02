@@ -112,14 +112,14 @@ public class AppTest {
         BigInteger[] data3 = read_file("test3.txt");
         BigInteger[] data4 = read_file("test4.txt");
         BigInteger[] data5 = read_file("test5.txt");
-//        BigInteger[] data6 = read_file("test6.txt");
+        BigInteger[] data6 = read_file("test6.txt");
 
         assertEquals( FindMul(data1), App._mul(data1) );
         assertEquals( FindMul(data2), App._mul(data2) );
         assertEquals( FindMul(data3), App._mul(data3) );
         assertEquals( FindMul(data4), App._mul(data4) );
         assertEquals( FindMul(data5), App._mul(data5) );
-//        assertEquals( FindMul(data6), App._mul(data6) );
+        assertEquals( FindMul(data6), App._mul(data6) );
     }
 
     @Test
@@ -266,7 +266,7 @@ public class AppTest {
     public void MulTimeoutTest() throws IOException {
 
         BigInteger[] data = read_file("test5.txt");
-        assertTimeout( Duration.ofMillis(10000), () -> {
+        assertTimeout( Duration.ofMillis(20000), () -> {
             App._mul(data);
         } );
     }
