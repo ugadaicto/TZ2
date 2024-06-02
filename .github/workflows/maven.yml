@@ -30,7 +30,7 @@ jobs:
       run: mvn -B package --file pom.xml
 
     - name: Test App
-      run: mvn test
+      run: mvn src/test
 
     - name: Send Notification
       uses: BorisTestov/tg_sender_action@latest
