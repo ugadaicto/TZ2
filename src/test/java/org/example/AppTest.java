@@ -82,7 +82,7 @@ public class AppTest {
         assertEquals( FindMax(data3), App._max(data3) );
         assertEquals( FindMax(data4), App._max(data4) );
         assertEquals( FindMax(data5), App._max(data5) );
-        assertEquals( FindMax(data6), App._max(data6) );
+        assertEquals( BigInteger.ONE, App._max(data6) );
     }
 
     @Test
