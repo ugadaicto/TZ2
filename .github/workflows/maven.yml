@@ -33,11 +33,15 @@ jobs:
 
     - name: Send Notification
 
+      vars:
+        tests_passed_reply: все ок
+        tests_failed_reply: все не ок
+
       uses: "appleboy/telegram-action@master"
       with:
         to: ${{ secrets.TELEGRAM_CHAT_ID }}
         token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         if: success()
-        args: все ок
+        args: tests_passed_reply
         else:
-        args: все не ок
+        args: tests_failed_reply
