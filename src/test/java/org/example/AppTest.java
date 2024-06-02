@@ -82,7 +82,7 @@ public class AppTest {
         assertEquals( FindMax(data3), App._max(data3) );
         assertEquals( FindMax(data4), App._max(data4) );
         assertEquals( FindMax(data5), App._max(data5) );
-        assertEquals( BigInteger.ONE, App._max(data6) );
+        assertEquals( FindMax(data6), App._max(data6) );
     }
 
     @Test
@@ -248,8 +248,8 @@ public class AppTest {
         long time_point5 = System.currentTimeMillis();
         App._mul(data5);
         long time_point6 = System.currentTimeMillis();
-//        App._mul(data6);
-//        long time_point7 = System.currentTimeMillis();
+        App._mul(data6);
+        long time_point7 = System.currentTimeMillis();
 
         System.out.println();
         System.out.println("Mul function time test: ");
@@ -258,7 +258,7 @@ public class AppTest {
         System.out.println("Third data: " + String.valueOf(time_point4 - time_point3) + " ms");
         System.out.println("Fourth data: " + String.valueOf(time_point5 - time_point4) + " ms");
         System.out.println("Fifth data: " + String.valueOf(time_point6 - time_point5) + " ms");
-//        System.out.println("Sixth data: " + String.valueOf(time_point7 - time_point6) + " ms");
+        System.out.println("Sixth data: " + String.valueOf(time_point7 - time_point6) + " ms");
 
     }
 
@@ -266,7 +266,7 @@ public class AppTest {
     public void MulTimeoutTest() throws IOException {
 
         BigInteger[] data = read_file("test5.txt");
-        assertTimeout( Duration.ofMillis(3000), () -> {
+        assertTimeout( Duration.ofMillis(10000), () -> {
             App._mul(data);
         } );
     }

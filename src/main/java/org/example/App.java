@@ -70,16 +70,4 @@ public class App {
         return composition;
     }
 
-    public static void main( String[] args ) throws IOException {
-
-        Scanner scan = new Scanner(System.in);
-        String file_name = scan.next();
-        BigInteger[] numbers = read_file(file_name);
-
-        System.out.println( _min(numbers) );
-        System.out.println( _max(numbers) );
-        System.out.println( _sum(numbers) );
-        System.out.println( _mul(numbers) );
-    }
-
 }
