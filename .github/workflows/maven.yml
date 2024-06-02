@@ -17,21 +17,24 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    name: A job to post data in tg
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up JDK 17
-      uses: actions/setup-java@v3
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        cache: maven
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      - uses: actions/checkout@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
 
-    - name: Send Notification
-      uses: BorisTestov/tg_sender_action@latest
-      env:
-        TG_SENDER_TG_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        TG_SENDER_TG_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-        TG_SENDER_PAYLOAD_MESSAGE: "все ок"
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml
+
+      - name: Test App
+        run: mvn test
+
+      - name: Send Notification
+        uses: BorisTestov/tg_sender_action@latest
+        env:
+          TG_SENDER_TG_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TG_SENDER_TG_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TG_SENDER_PAYLOAD_MESSAGE: "все ок"
